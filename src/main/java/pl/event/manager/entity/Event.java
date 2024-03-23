@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "events")
@@ -26,13 +27,17 @@ public class Event {
     @CollectionTable(name = "event_participants", joinColumns = @JoinColumn(name = "event_id"))
     @Column(name = "event_participants")
     private List<Long> eventParticipants;
+    @ElementCollection
+    @CollectionTable(name = "comments", joinColumns = @JoinColumn(name = "comment_id"))
+    @Column(name = "event_comments")
+    private List<Long> eventComments;
 
 
     public Event() {
     }
 
 
-    public Event(long id, String eventName, LocalDateTime startDate, LocalDateTime endDate, String eventDescription, long userWhoAddedId, List<Long> eventParticipants) {
+    public Event(long id, String eventName, LocalDateTime startDate, LocalDateTime endDate, String eventDescription, long userWhoAddedId, List<Long> eventParticipants, List<Long> eventComments) {
         this.id = id;
         this.eventName = eventName;
         this.startDate = startDate;
@@ -40,6 +45,7 @@ public class Event {
         this.eventDescription = eventDescription;
         this.userWhoAddedId = userWhoAddedId;
         this.eventParticipants = eventParticipants;
+        this.eventComments = eventComments;
     }
 
     public long getId() {
@@ -96,5 +102,39 @@ public class Event {
 
     public void setEventParticipants(List<Long> eventParticipants) {
         this.eventParticipants = eventParticipants;
+    }
+
+    public List<Long> getEventComments() {
+        return eventComments;
+    }
+
+    public void setEventComments(List<Long> eventComments) {
+        this.eventComments = eventComments;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Event event)) return false;
+        return id == event.id && userWhoAddedId == event.userWhoAddedId && Objects.equals(eventName, event.eventName) && Objects.equals(startDate, event.startDate) && Objects.equals(endDate, event.endDate) && Objects.equals(eventDescription, event.eventDescription) && Objects.equals(eventParticipants, event.eventParticipants) && Objects.equals(eventComments, event.eventComments);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, eventName, startDate, endDate, eventDescription, userWhoAddedId, eventParticipants, eventComments);
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id=" + id +
+                ", eventName='" + eventName + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", eventDescription='" + eventDescription + '\'' +
+                ", userWhoAddedId=" + userWhoAddedId +
+                ", eventParticipants=" + eventParticipants +
+                ", eventComments=" + eventComments +
+                '}';
     }
 }
