@@ -3,6 +3,8 @@ package pl.event.manager.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+<<<<<<<<< Temporary merge branch 1
+=========
 import java.util.List;
 import java.util.Objects;
 
