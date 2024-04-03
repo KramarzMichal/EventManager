@@ -10,7 +10,7 @@ import pl.event.manager.entity.User;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-class UserInterfaceTest {
+class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
     private User user;
