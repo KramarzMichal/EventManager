@@ -11,4 +11,6 @@ public interface EventService {
 
     Event addComment(String comment);
 
+    void deleteEventById (long id);
+
 }
