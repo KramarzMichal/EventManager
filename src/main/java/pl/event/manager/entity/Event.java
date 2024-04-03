@@ -35,8 +35,6 @@ public class Event {
 
     public Event() {
     }
-
-
     public Event(long id, String eventName, LocalDateTime startDate, LocalDateTime endDate, String eventDescription, long userWhoAddedId, List<Long> eventParticipants, List<Long> eventComments) {
         this.id = id;
         this.eventName = eventName;
