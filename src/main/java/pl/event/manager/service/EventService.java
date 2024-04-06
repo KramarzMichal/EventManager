@@ -2,6 +2,8 @@ package pl.event.manager.service;
 
 import pl.event.manager.entity.Event;
 
+import java.util.List;
+
 public interface EventService {
     Event saveEvent(Event eventToSave);
 
@@ -9,8 +11,9 @@ public interface EventService {
 
     Event updateEvent(long id, Event eventToUpdate);
 
-    Event addComment(String comment);
+    Event addComment(long eventId, String comment);
 
     void deleteEventById (long id);
 
+    List<Event> getFutureEvents();
 }

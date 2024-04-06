@@ -25,11 +25,11 @@ public class Event {
     private long userWhoAddedId;
     @ElementCollection
     @CollectionTable(name = "event_participants", joinColumns = @JoinColumn(name = "event_id"))
-    @Column(name = "event_participants")
+    @Column(name = "event_participants", nullable = false)
     private List<Long> eventParticipants;
     @ElementCollection
     @CollectionTable(name = "comments", joinColumns = @JoinColumn(name = "comment_id"))
-    @Column(name = "event_comments")
+    @Column(name = "event_comments", nullable = false)
     private List<Long> eventComments;
 
 
