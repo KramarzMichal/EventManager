@@ -1,8 +1,6 @@
 package pl.event.manager.service.impl;
 
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import pl.event.manager.entity.Comment;
 import pl.event.manager.entity.Event;
 import pl.event.manager.repository.CommentRepository;
 import pl.event.manager.repository.EventRepository;
@@ -26,7 +24,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public Event saveEvent(Event eventToSave) {
-        return eventRepository.save(eventToSave);
+        return null;
     }
 
     @Override
