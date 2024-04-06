@@ -9,7 +9,7 @@ public interface EventService {
 
     Event updateEvent(long id, Event eventToUpdate);
 
-    Event addComment(String comment);
+    Event addComment(long eventId, String comment);
 
     void deleteEventById (long id);
 

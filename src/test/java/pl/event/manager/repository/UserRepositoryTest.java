@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import pl.event.manager.entity.User;
+import pl.event.manager.security.ApplicationUserRole;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,7 +18,7 @@ class UserRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        user = new User(1L, "Jan Kowalski", "kowalski@gmail.com", "password");
+        user = new User(1L, "Jan Kowalski", "kowalski@gmail.com", "password", ApplicationUserRole.USER);
     }
     @Test
     @DisplayName("Zapisywanie użytkownika")
