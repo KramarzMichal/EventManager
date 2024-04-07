@@ -5,5 +5,5 @@ import pl.event.manager.entity.User;
 public interface UserService {
     User saveUser (User userToSave);
     User updateUser(User userToUpdate);
-    void deleteUserById (long id);
+    boolean deleteUserById (long id);
 }

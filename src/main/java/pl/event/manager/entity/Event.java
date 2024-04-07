@@ -114,12 +114,12 @@ public class Event {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Event event)) return false;
-        return id == event.id && userWhoAddedId == event.userWhoAddedId && Objects.equals(eventName, event.eventName) && Objects.equals(startDate, event.startDate) && Objects.equals(endDate, event.endDate) && Objects.equals(eventDescription, event.eventDescription) && Objects.equals(eventParticipants, event.eventParticipants) && Objects.equals(eventComments, event.eventComments);
+        return getId() == event.getId() && getUserWhoAddedId() == event.getUserWhoAddedId() && Objects.equals(getEventName(), event.getEventName()) && Objects.equals(getStartDate(), event.getStartDate()) && Objects.equals(getEndDate(), event.getEndDate()) && Objects.equals(getEventDescription(), event.getEventDescription()) && Objects.equals(getEventParticipants(), event.getEventParticipants()) && Objects.equals(getEventComments(), event.getEventComments());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, eventName, startDate, endDate, eventDescription, userWhoAddedId, eventParticipants, eventComments);
+        return Objects.hash(getId(), getEventName(), getStartDate(), getEndDate(), getEventDescription(), getUserWhoAddedId(), getEventParticipants(), getEventComments());
     }
 
     @Override

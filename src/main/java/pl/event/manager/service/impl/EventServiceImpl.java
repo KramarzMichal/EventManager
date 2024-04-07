@@ -1,6 +1,8 @@
 package pl.event.manager.service.impl;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
+import pl.event.manager.entity.Comment;
 import pl.event.manager.entity.Event;
 import pl.event.manager.repository.CommentRepository;
 import pl.event.manager.repository.EventRepository;
@@ -45,11 +47,16 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public Event addComment(long eventId, String comment) {
-        Comment newComment = commentRepository.save(new Comment(1L, comment));
-        Event event = eventRepository.findById(eventId).get();
-        event.getEventComments().add(newComment.getId());
-        return eventRepository.save(event);
+        Comment newComment = commentRepository.save(new Comment(0L, comment));
+        return eventRepository.findById(eventId)
+                .map(event -> {
+                    event.getEventComments().add(newComment.getId());
+                    return eventRepository.save(event);
+                })
+                .orElseThrow(() -> new EntityNotFoundException("Event o nr id: " + eventId + " nie został znaleziony"));
     }
+
+
 
     @Override
     public void deleteEventById(long id) {

@@ -36,10 +36,10 @@ public class UserController {
        userService.saveUser(userToRegister);
        return "redirect:/";
     }
-    @PostMapping("login")
+    @PostMapping("logged")
     public String getLoginPage(Model model) {
         List<Event> events = eventService.getFutureEvents();
         model.addAttribute("events", events);
-        return "login";
+        return "logged";
     }
 }

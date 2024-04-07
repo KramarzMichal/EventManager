@@ -18,7 +18,7 @@ class UserRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        user = new User(1L, "Jan Kowalski", "kowalski@gmail.com", "password", ApplicationUserRole.USER);
+        user = new User(1L, "Jan Kowalski", "kowalski@gmail.com", "password",true);
     }
     @Test
     @DisplayName("Zapisywanie użytkownika")

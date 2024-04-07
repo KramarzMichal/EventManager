@@ -1,6 +1,5 @@
 package pl.event.manager.repository;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,7 +22,7 @@ class EventRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        event = new Event(1L,
+        event = new Event(0L,
                 "Szkolenie Java",
                 LocalDateTime.of(2024, 5, 5, 9, 0),
                 LocalDateTime.of(2024, 12, 31, 12, 5),
@@ -48,7 +47,7 @@ class EventRepositoryTest {
     @DisplayName("Pobieranie wszystkich eventów")
     void shouldFindAllEvents() {
         //given
-        Event event2 = new Event(2L,
+        Event event2 = new Event(0L,
                 "Szkolenie Pythona",
                 LocalDateTime.of(2024, 6, 10, 10, 30),
                 LocalDateTime.of(2024, 10, 5, 16, 15),

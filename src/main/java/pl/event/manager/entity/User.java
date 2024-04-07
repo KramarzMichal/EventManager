@@ -1,9 +1,11 @@
 package pl.event.manager.entity;
 
 import jakarta.persistence.*;
-import pl.event.manager.security.ApplicationUserRole;
+
+
 
 import java.util.Objects;
+
 
 @Entity
 @Table(name = "users")
@@ -12,25 +14,22 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private long id;
-    @Column(name = "user_name", unique = true)
+    @Column(name = "username", unique = true)
     private String userName;
     @Column(unique = true)
     private String login;
     @Column(nullable = false)
     private String password;
     @Column
-    @Enumerated(EnumType.STRING)
-    private ApplicationUserRole role;
+    private boolean enabled;
 
-    public User() {
-    }
 
-    public User(long id, String userName, String login, String password, ApplicationUserRole role) {
+    public User(long id, String userName, String login, String password, boolean enabled) {
         this.id = id;
         this.userName = userName;
         this.login = login;
         this.password = password;
-        this.role = role;
+        this.enabled = enabled;
     }
 
     public long getId() {
@@ -65,24 +64,24 @@ public class User {
         this.password = password;
     }
 
-    public Enum<ApplicationUserRole> getRole() {
-        return role;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setRole(ApplicationUserRole role) {
-        this.role = role;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User user)) return false;
-        return id == user.id && Objects.equals(userName, user.userName) && Objects.equals(login, user.login) && Objects.equals(password, user.password) && Objects.equals(role, user.role);
+        return getId() == user.getId() && isEnabled() == user.isEnabled() && Objects.equals(getUserName(), user.getUserName()) && Objects.equals(getLogin(), user.getLogin()) && Objects.equals(getPassword(), user.getPassword());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userName, login, password, role);
+        return Objects.hash(getId(), getUserName(), getLogin(), getPassword(), isEnabled());
     }
 
     @Override
@@ -92,8 +91,12 @@ public class User {
                 ", userName='" + userName + '\'' +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
-                ", role=" + role +
+                ", enabled=" + enabled +
                 '}';
     }
 }
+
+
+
+
 
